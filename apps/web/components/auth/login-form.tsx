@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "@repo/auth/client";
+import { authClient } from "@repo/backend/better-auth/auth-client";
 import { Button } from "@repo/ui/components/button";
 import {
   Card,
@@ -46,7 +46,7 @@ export function LoginForm({
     setIsLoading(true);
 
     try {
-      const { data: authData, error } = await signIn.email({
+      const { data: authData, error } = await authClient.signIn.email({
         email: data.email,
         password: data.password,
       });

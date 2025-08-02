@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "@repo/auth/client";
+import { authClient } from "@repo/backend/better-auth/auth-client";
 import { Button } from "@repo/ui/src/components/button";
 import {
   Card,
@@ -20,7 +20,7 @@ export default function Page() {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      await signOut({
+      await authClient.signOut({
         fetchOptions: {
           onSuccess: () => {
             router.push("/login");

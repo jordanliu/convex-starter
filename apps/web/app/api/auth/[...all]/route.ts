@@ -1,1 +1,1 @@
-export { GET, POST } from "@repo/auth/handlers";
+export { GET, POST } from "@repo/backend/better-auth/handlers";

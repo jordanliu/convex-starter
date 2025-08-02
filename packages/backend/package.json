@@ -1,15 +1,16 @@
 {
-  "name": "@repo/auth",
-  "version": "0.0.0",
+  "name": "@repo/convex",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
+    "dev": "convex dev",
+    "setup": "convex dev --until-success",
     "clean": "git clean -xdf .cache .turbo dist node_modules"
   },
   "dependencies": {
-    "@repo/database": "workspace:*",
-    "@repo/email": "workspace:*",
-    "better-auth": "^1.3.0",
-    "next": "^15.3.0"
+    "@convex-dev/better-auth": "^0.7.13",
+    "better-auth": "^1.3.4",
+    "convex": "^1.25.4"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
