@@ -1,15 +1,14 @@
 import { convexAdapter } from "@convex-dev/better-auth";
 import { convex } from "@convex-dev/better-auth/plugins";
-import { organization } from "better-auth/plugins";
-
 import { betterAuth, BetterAuthOptions } from "better-auth";
+import { organization } from "better-auth/plugins";
 import { GenericCtx } from "../convex/_generated/server";
 import { betterAuthComponent } from "../convex/auth";
 
 // Split out options so they can be passed to the convex plugin
 const createOptions = (ctx: GenericCtx) =>
   ({
-    baseURL: "https://localhost:3000",
+    baseURL: "http://localhost:3000", //TODO: replace with env variable
     database: convexAdapter(ctx, betterAuthComponent),
     account: {
       accountLinking: {
@@ -20,7 +19,6 @@ const createOptions = (ctx: GenericCtx) =>
 
     emailAndPassword: {
       enabled: true,
-      requireEmailVerification: true,
     },
     socialProviders: {
       github: {
@@ -34,15 +32,11 @@ const createOptions = (ctx: GenericCtx) =>
         prompt: "select_account+consent",
       },
     },
-    user: {
-      deleteUser: {
-        enabled: true,
-      },
-    },
+
     plugins: [organization()],
   }) satisfies BetterAuthOptions;
 
-export const createAuth = (ctx: GenericCtx): ReturnType<typeof betterAuth> => {
+export const auth = (ctx: GenericCtx): ReturnType<typeof betterAuth> => {
   const options = createOptions(ctx);
   return betterAuth({
     ...options,
