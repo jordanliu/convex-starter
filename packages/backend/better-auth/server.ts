@@ -1,9 +1,12 @@
 import { convexAdapter } from "@convex-dev/better-auth";
 import { convex } from "@convex-dev/better-auth/plugins";
+import { requireMutationCtx } from "@convex-dev/better-auth/utils";
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { organization } from "better-auth/plugins";
 import { GenericCtx } from "../convex/_generated/server";
 import { betterAuthComponent } from "../convex/auth";
+import { sendEmail } from "../convex/email/email";
+import VerifyEmail from "../convex/email/templates/verifyEmail";
 
 // Split out options so they can be passed to the convex plugin
 const createOptions = (ctx: GenericCtx) =>
@@ -19,6 +22,15 @@ const createOptions = (ctx: GenericCtx) =>
 
     emailAndPassword: {
       enabled: true,
+    },
+    emailVerification: {
+      sendVerificationEmail: async ({ user, url }) => {
+        await sendEmail(requireMutationCtx(ctx), {
+          to: user.email,
+          subject: "Verify your email address",
+          react: VerifyEmail({ name: user.name || "", verificationUrl: url }),
+        });
+      },
     },
     // socialProviders: {
     //   github: {
