@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-starter",
+  "name": "convex-starter",
   "private": true,
   "scripts": {
     "build": "turbo run build",

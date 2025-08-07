@@ -1,31 +1,30 @@
 # convex-starter
 
-A highly opinionated Next.js starter with authentication, database integration, reusable UI components, email support, and full monorepo tooling. Pre-configured for rapid, scalable development.
+A highly opinionated Next.js starter with better-auth, convex, shadcn/ui, react-email, and turborepo. Pre-configured for rapid, scalable development.
 
 ## Project Structure
 
 ```
-nextjs-starter/
+convex-starter/
 ├── apps/
 │   └── web/                 # Main Next.js application
 ├── packages/
-│   ├── auth/               # Authentication utilities
-│   ├── database/           # Database schema and utilities
-│   ├── email/              # Email templates and providers
+│   ├── backend/            # Convex backend with Better Auth integration
 │   ├── eslint-config/      # Shared ESLint configurations
 │   ├── typescript-config/  # Shared TypeScript configurations
-│   └── ui/                 # Shared UI components
+│   └── ui/                 # Shared UI components (shadcn/ui)
 └── turbo/                  # Turborepo configuration
 ```
 
 ## Features
 
-- Authentication with [Better Auth](https://github.com/jordanliu/better-auth)
-- Database using [Drizzle ORM](https://orm.drizzle.team/) and [PostgreSQL](https://www.postgresql.org/)
-- UI components built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
-- Email support with [react-email](https://react.email)
-- Form handling via [react-hook-form](https://react-hook-form.com)
-- Monorepo setup using [Turborepo](https://turbo.build/repo)
+- **[Convex](https://convex.dev)** - Backend-as-a-service with real-time data synchronization, serverless functions, and built-in database
+- **Authentication** with [Better Auth](https://www.better-auth.com) integrated with Convex
+- **UI components** built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
+- **Form handling** via [react-hook-form](https://react-hook-form.com) with Zod validation
+- **Monorepo setup** using [Turborepo](https://turbo.build/repo) for efficient development
+- **TypeScript** throughout with shared configurations
+- **Real-time updates** powered by Convex's reactive queries
 
 ## Getting Started
 
@@ -40,20 +39,21 @@ cd [project-name]
 
 ```bash
 pnpm install
+
 ```
 
-### 3. Set Up Environment Variables
+### 3. Configure Convex
+
+```bash
+pnpm --filter @repo/backend run setup
+```
+
+This will initialize your Convex project and start the development server.
+
+### 4. Set Up Environment Variables
 
 ```bash
 cp apps/web/.env.example apps/web/.env
-# Edit the .env file with your database and authentication configuration
-```
-
-### 4. Set Up the Database
-
-```bash
-pnpm --filter @repo/database generate
-pnpm --filter @repo/database migrate
 ```
 
 ### 5. Start the Development Server
@@ -62,7 +62,7 @@ pnpm --filter @repo/database migrate
 pnpm dev
 ```
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
+This will start both the Next.js application at [http://localhost:3000](http://localhost:3000) and the Convex development server at [http://127.0.0.1:6790](http://127.0.0.1:6790).
 
 ## Available Commands
 
@@ -78,11 +78,10 @@ The application will be available at [http://localhost:3000](http://localhost:30
 - `pnpm format` - Format code with Prettier
 - `pnpm check-types` - Run TypeScript type checking
 
-### Database Operations
+### Convex Operations
 
-- `pnpm --filter @repo/database generate` - Generate database migrations
-- `pnpm --filter @repo/database migrate` - Apply database migrations
-- `pnpm --filter @repo/database studio` - Open Drizzle Studio
+- `pnpm --filter @repo/backend setup` - Initialize Convex project (run once)
+- `pnpm --filter @repo/backend dev` - Start Convex development server
 
 ### Package-Specific Development
 
@@ -120,4 +119,10 @@ pnpm add -w [package-name]
 
 ```bash
 pnpm build
+```
+
+Deploy your Convex backend:
+
+```bash
+pnpm --filter @repo/backend run deploy
 ```
