@@ -1,4 +1,4 @@
-# next-starter
+# convex-starter
 
 A highly opinionated Next.js starter with authentication, database integration, reusable UI components, email support, and full monorepo tooling. Pre-configured for rapid, scalable development.
 
@@ -32,7 +32,7 @@ nextjs-starter/
 ### 1. Create a New Project
 
 ```bash
-npx create-next-app@latest [project-name] --use-pnpm --example https://github.com/jordanliu/next-starter.git
+npx create-next-app@latest [project-name] --use-pnpm --example https://github.com/jordanliu/convex-starter.git
 cd [project-name]
 ```
 

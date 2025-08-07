@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
             <CatIcon className="size-4" />
           </div>
-          next-starter
+          convex-starter
         </a>
         {children}
       </div>

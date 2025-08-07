@@ -8,7 +8,7 @@ import { betterAuthComponent } from "../convex/auth";
 // Split out options so they can be passed to the convex plugin
 const createOptions = (ctx: GenericCtx) =>
   ({
-    baseURL: "http://localhost:3000", //TODO: replace with env variable
+    baseURL: process.env.APP_URL as string,
     database: convexAdapter(ctx, betterAuthComponent),
     account: {
       accountLinking: {
@@ -20,19 +20,18 @@ const createOptions = (ctx: GenericCtx) =>
     emailAndPassword: {
       enabled: true,
     },
-    socialProviders: {
-      github: {
-        clientId: process.env.GITHUB_CLIENT_ID as string,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-      },
-      google: {
-        clientId: process.env.GOOGLE_CLIENT_ID as string,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-        accessType: "offline",
-        prompt: "select_account+consent",
-      },
-    },
-
+    // socialProviders: {
+    //   github: {
+    //     clientId: process.env.GITHUB_CLIENT_ID as string,
+    //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    //   },
+    //   google: {
+    //     clientId: process.env.GOOGLE_CLIENT_ID as string,
+    //     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    //     accessType: "offline",
+    //     prompt: "select_account+consent",
+    //   },
+    // },
     plugins: [organization()],
   }) satisfies BetterAuthOptions;
 

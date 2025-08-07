@@ -15,8 +15,8 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "next-starter",
-  description: "next-starter",
+  title: "convex-starter",
+  description: "convex-starter",
 };
 
 export default function RootLayout({

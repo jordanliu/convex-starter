@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@repo/backend/better-auth/auth-client";
+import { authClient } from "@repo/backend/better-auth/client";
 import { Button } from "@repo/ui/components/button";
 import {
   Card,
