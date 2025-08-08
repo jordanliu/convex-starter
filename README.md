@@ -31,7 +31,7 @@ convex-starter/
 ### 1. Create a New Project
 
 ```bash
-npx create-next-app@latest [project-name] --use-pnpm --example https://github.com/jordanliu/convex-starter.git
+npx create-next-app@latest [project-name] --use-pnpm --example https://github.com/jordanliu/convex-starter
 cd [project-name]
 ```
 
