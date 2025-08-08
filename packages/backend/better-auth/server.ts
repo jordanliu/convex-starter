@@ -8,7 +8,6 @@ import { betterAuthComponent } from "../convex/auth";
 import { sendEmail } from "../convex/email/email";
 import VerifyEmail from "../convex/email/templates/verifyEmail";
 
-// Split out options so they can be passed to the convex plugin
 const createOptions = (ctx: GenericCtx) =>
   ({
     baseURL: process.env.APP_URL as string,
@@ -26,24 +25,24 @@ const createOptions = (ctx: GenericCtx) =>
     emailVerification: {
       sendVerificationEmail: async ({ user, url }) => {
         await sendEmail(requireMutationCtx(ctx), {
-          to: user.email,
+          to: "delivered@resend.dev",
           subject: "Verify your email address",
           react: VerifyEmail({ name: user.name || "", verificationUrl: url }),
         });
       },
     },
-    // socialProviders: {
-    //   github: {
-    //     clientId: process.env.GITHUB_CLIENT_ID as string,
-    //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    //   },
-    //   google: {
-    //     clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //     clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    //     accessType: "offline",
-    //     prompt: "select_account+consent",
-    //   },
-    // },
+    socialProviders: {
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID as string,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      },
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID as string,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+        accessType: "offline",
+        prompt: "select_account+consent",
+      },
+    },
     plugins: [organization()],
   }) satisfies BetterAuthOptions;
 

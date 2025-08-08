@@ -8,17 +8,16 @@ import {
   Link,
   Text,
 } from "@react-email/components";
-import React from "react";
 
 interface VerifyEmailProps {
   name: string;
   verificationUrl: string;
 }
 
-function VerifyEmail({
+export default function VerifyEmail({
   name,
   verificationUrl,
-}: VerifyEmailProps): React.ReactElement {
+}: VerifyEmailProps) {
   return (
     <Html>
       <Head />
@@ -121,5 +120,3 @@ const footer = {
   lineHeight: "16px",
   marginTop: "12px",
 };
-
-export default VerifyEmail;
