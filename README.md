@@ -18,13 +18,12 @@ convex-starter/
 
 ## Features
 
-- **[Convex](https://convex.dev)** - Backend-as-a-service with real-time data synchronization, serverless functions, and built-in database
-- **Authentication** with [Better Auth](https://www.better-auth.com) integrated with Convex
-- **React Email** with [Resend](https://www.resend.com) integrated with Convex
-- **UI components** built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
-- **Form handling** via [react-hook-form](https://react-hook-form.com) with validation
-- **Monorepo setup** using [Turborepo](https://turbo.build/repo) for efficient development
-- **TypeScript** throughout with shared configurations
+- Authentication with [Better Auth](https://better-auth.com)
+- Backend platform (db, functions, storage, jobs) using [Convex](https://www.convex.dev/)
+- UI components built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
+- Email support with [react-email](https://react.email) and [Resend](https://resend.com)
+- Form handling via [react-hook-form](https://react-hook-form.com)
+- Monorepo setup using [Turborepo](https://turbo.build/repo)
 
 ## Getting Started
 
