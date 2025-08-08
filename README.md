@@ -9,7 +9,7 @@ convex-starter/
 ├── apps/
 │   └── web/                 # Main Next.js application
 ├── packages/
-│   ├── backend/            # Convex backend with Better Auth integration
+│   ├── backend/            # Convex backend
 │   ├── eslint-config/      # Shared ESLint configurations
 │   ├── typescript-config/  # Shared TypeScript configurations
 │   └── ui/                 # Shared UI components (shadcn/ui)
@@ -20,11 +20,11 @@ convex-starter/
 
 - **[Convex](https://convex.dev)** - Backend-as-a-service with real-time data synchronization, serverless functions, and built-in database
 - **Authentication** with [Better Auth](https://www.better-auth.com) integrated with Convex
+- **React Email** with [Resend](https://www.resend.com) integrated with Convex
 - **UI components** built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
 - **Form handling** via [react-hook-form](https://react-hook-form.com) with Zod validation
 - **Monorepo setup** using [Turborepo](https://turbo.build/repo) for efficient development
 - **TypeScript** throughout with shared configurations
-- **Real-time updates** powered by Convex's reactive queries
 
 ## Getting Started
 
@@ -48,9 +48,16 @@ pnpm install
 pnpm --filter @repo/backend run setup
 ```
 
-This will initialize your Convex project and start the development server.
+This initializes your Convex project. Next, ensure your backend environment variables are uploaded to the Convex dashboard. From the `packages/backend` directory, run:
 
-### 4. Set Up Environment Variables
+```bash
+cd packages/backend
+npx convex env set --env-file .env
+```
+
+This will upload the variables in your `.env` to Convex so they are available to your Convex functions.
+
+### 4. Configure Client
 
 ```bash
 cp apps/web/.env.example apps/web/.env
@@ -86,7 +93,6 @@ This will start both the Next.js application at [http://localhost:3000](http://l
 ### Package-Specific Development
 
 - `pnpm --filter web dev` - Run only the web application
-- `pnpm --filter @repo/ui dev` - Develop UI components in isolation
 
 ## Project Management
 
