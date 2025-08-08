@@ -50,6 +50,7 @@ This initializes your Convex project. Next, ensure your backend environment vari
 
 ```bash
 cd packages/backend
+cp packages/backend/.env.example packages/backend/.env
 npx convex env set --env-file .env
 ```
 
