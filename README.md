@@ -22,7 +22,7 @@ convex-starter/
 - **Authentication** with [Better Auth](https://www.better-auth.com) integrated with Convex
 - **React Email** with [Resend](https://www.resend.com) integrated with Convex
 - **UI components** built with [shadcn/ui](https://ui.shadcn.com) and [Tailwind CSS](https://tailwindcss.com)
-- **Form handling** via [react-hook-form](https://react-hook-form.com) with Zod validation
+- **Form handling** via [react-hook-form](https://react-hook-form.com) with validation
 - **Monorepo setup** using [Turborepo](https://turbo.build/repo) for efficient development
 - **TypeScript** throughout with shared configurations
 
@@ -39,7 +39,6 @@ cd [project-name]
 
 ```bash
 pnpm install
-
 ```
 
 ### 3. Configure Convex
@@ -60,7 +59,7 @@ This will upload the variables in your `.env` to Convex so they are available to
 ### 4. Configure Client
 
 ```bash
-cp apps/web/.env.example apps/web/.env
+cp apps/web/.env.example apps/web/.env.local
 ```
 
 ### 5. Start the Development Server
@@ -75,60 +74,91 @@ This will start both the Next.js application at [http://localhost:3000](http://l
 
 ### Development
 
-- `pnpm dev` - Start development server for all packages
-- `pnpm build` - Build all packages and applications for production
-- `pnpm start` - Start production server (run build first)
+```bash
+pnpm dev          # Start development servers for all packages
+pnpm build        # Build all packages for production
+pnpm start        # Start production server (requires build)
+```
 
 ### Code Quality
 
-- `pnpm lint` - Run ESLint across all packages
-- `pnpm format` - Format code with Prettier
-- `pnpm check-types` - Run TypeScript type checking
+```bash
+pnpm lint         # Run ESLint across all packages
+pnpm format       # Format code with Prettier
+pnpm check-types  # Run TypeScript type checking
+```
 
-### Convex Operations
+### Convex-Specific
 
-- `pnpm --filter @repo/backend setup` - Initialize Convex project (run once)
-- `pnpm --filter @repo/backend dev` - Start Convex development server
+```bash
+pnpm --filter @repo/backend setup   # Initialize Convex project (run once)
+pnpm --filter @repo/backend dev     # Start Convex development server only
+pnpm --filter @repo/backend deploy  # Deploy Convex backend to production
+```
 
-### Package-Specific Development
+### Package-Specific
 
-- `pnpm --filter web dev` - Run only the web application
+```bash
+pnpm --filter web dev         # Run only the Next.js application
+```
 
 ## Project Management
 
-### Add a new package
+### Adding New Packages
 
 ```bash
 turbo gen
 ```
 
-### Add a new shadcn/ui component
+Follow the prompts to scaffold a new package with proper TypeScript and build configurations.
+
+### Adding shadcn/ui Components
 
 ```bash
-cd apps/web && pnpm dlx shadcn@canary add [COMPONENT]
+cd apps/web
+pnpm dlx shadcn@canary add [component-name]
 ```
 
-### Add dependencies
+Components are automatically added to the UI package and can be imported across the monorepo.
+
+### Managing Dependencies
 
 ```bash
-# Install to specific package
+# Add to specific package
 pnpm --filter web add [package-name]
 pnpm --filter @repo/ui add [package-name]
+pnpm --filter @repo/backend add [package-name]
 
-# Install to workspace root
+# Add to workspace root (affects all packages)
 pnpm add -w [package-name]
+
+# Add dev dependencies
+pnpm --filter web add -D [package-name]
 ```
 
 ## Deployment
 
-### Build for Production
+### 1. Deploy Convex Backend
+
+```bash
+pnpm --filter @repo/backend run deploy
+```
+
+This creates your production Convex deployment and provides you with a production URL.
+
+### 2. Configure Production Environment
+
+Update your hosting platform (Vercel, Netlify, etc.) with the production Convex URL:
+
+```env
+CONVEX_URL=https://your-production-deployment.convex.cloud
+NEXT_PUBLIC_CONVEX_URL=https://your-production-deployment.convex.cloud
+```
+
+### 3. Build and Deploy Frontend
 
 ```bash
 pnpm build
 ```
 
-Deploy your Convex backend:
-
-```bash
-pnpm --filter @repo/backend run deploy
-```
+Then deploy the built application using your preferred hosting platform's deployment method.
