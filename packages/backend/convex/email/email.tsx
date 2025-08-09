@@ -12,7 +12,7 @@ export const sendEmail = async (
   ctx: RunMutationCtx,
   {
     from,
-    to, //TODO: change to user email
+    to,
     subject,
     react,
     cc,
@@ -32,7 +32,7 @@ export const sendEmail = async (
 
   await resend.sendEmail(ctx, {
     from: from || defaultFrom,
-    to: "delivered@resend.dev",
+    to: to,
     subject,
     html: await render(react),
     ...(cc && { cc }),

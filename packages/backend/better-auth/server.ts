@@ -25,7 +25,7 @@ const createOptions = (ctx: GenericCtx) =>
     emailVerification: {
       sendVerificationEmail: async ({ user, url }) => {
         await sendEmail(requireMutationCtx(ctx), {
-          to: "delivered@resend.dev",
+          to: user.email,
           subject: "Verify your email address",
           react: VerifyEmail({ name: user.name || "", verificationUrl: url }),
         });
