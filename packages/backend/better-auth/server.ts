@@ -21,7 +21,6 @@ const createOptions = (ctx: GenericCtx) =>
 
     emailAndPassword: {
       enabled: true,
-      requireEmailVerification: true,
     },
     emailVerification: {
       sendVerificationEmail: async ({ user, url }) => {
