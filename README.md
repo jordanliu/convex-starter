@@ -7,7 +7,7 @@ A highly opinionated Next.js starter with better-auth, convex, shadcn/ui, react-
 ```
 convex-starter/
 ├── apps/
-│   └── web/                 # Main Next.js application
+│   └── web/                # Main Next.js application
 ├── packages/
 │   ├── backend/            # Convex backend
 │   ├── eslint-config/      # Shared ESLint configurations
@@ -31,36 +31,36 @@ convex-starter/
 
 ```bash
 npx create-next-app@latest [project-name] --use-pnpm --example https://github.com/jordanliu/convex-starter
-cd [project-name]
 ```
 
 ### 2. Install Dependencies
 
 ```bash
+cd [project-name]
 pnpm install
 ```
 
-### 3. Configure Convex
+### 3. Configure Client
+
+Copy the example environment file into .env.local in apps/web, then update it with your real values.
+
+```bash
+cp apps/web/.env.example apps/web/.env.local
+```
+
+### 4. Configure Convex
 
 ```bash
 pnpm --filter @repo/backend run setup
 ```
 
-This initializes your Convex project. Next, ensure your backend environment variables are uploaded to the Convex dashboard. From the `packages/backend` directory, run:
+This initializes your Convex project. Next, ensure your backend environment variables are uploaded to the Convex dashboard. From root run:
 
 ```bash
-cd packages/backend
-cp packages/backend/.env.example packages/backend/.env
-npx convex env set --env-file .env
+cp packages/backend/.env.example packages/backend/.env.local
 ```
 
-This will upload the variables in your `.env` to Convex so they are available to your Convex functions.
-
-### 4. Configure Client
-
-```bash
-cp apps/web/.env.example apps/web/.env.local
-```
+You will then need to upload the environment variables into your Convex dashboard manually or via `convex env`. You can find more details [here](https://docs.convex.dev/production/environment-variables).
 
 ### 5. Start the Development Server
 

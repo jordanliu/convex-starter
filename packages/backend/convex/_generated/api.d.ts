@@ -9,9 +9,8 @@
  */
 
 import type * as auth from "../auth.js";
-import type * as email_email from "../email/email.js";
-import type * as email_templates_verifyEmail from "../email/templates/verifyEmail.js";
 import type * as http from "../http.js";
+import type * as lib_email from "../lib/email.js";
 
 import type {
   ApiFromModules,
@@ -29,9 +28,8 @@ import type {
  */
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
-  "email/email": typeof email_email;
-  "email/templates/verifyEmail": typeof email_templates_verifyEmail;
   http: typeof http;
+  "lib/email": typeof lib_email;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
 

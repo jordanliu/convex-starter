@@ -1,6 +1,6 @@
 import { RunMutationCtx } from "@convex-dev/better-auth";
 import { Resend } from "@convex-dev/resend";
-import { render } from "@react-email/components";
+import { render } from "@repo/email";
 import { components } from "../_generated/api";
 import "../polyfill";
 

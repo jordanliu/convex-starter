@@ -154,7 +154,7 @@ export function LoginForm({
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="you@example.com"
                     {...register("email")}
                     className={cn(errors.email && "border-destructive")}
                   />

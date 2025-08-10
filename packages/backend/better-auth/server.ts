@@ -1,12 +1,12 @@
 import { convexAdapter } from "@convex-dev/better-auth";
 import { convex } from "@convex-dev/better-auth/plugins";
 import { requireMutationCtx } from "@convex-dev/better-auth/utils";
+import VerifyEmail from "@repo/email/templates/verify-email";
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { organization } from "better-auth/plugins";
 import { GenericCtx } from "../convex/_generated/server";
 import { betterAuthComponent } from "../convex/auth";
-import { sendEmail } from "../convex/email/email";
-import VerifyEmail from "../convex/email/templates/verifyEmail";
+import { sendEmail } from "../convex/lib/email";
 
 const createOptions = (ctx: GenericCtx) =>
   ({
@@ -21,6 +21,7 @@ const createOptions = (ctx: GenericCtx) =>
 
     emailAndPassword: {
       enabled: true,
+      requireEmailVerification: true,
     },
     emailVerification: {
       sendVerificationEmail: async ({ user, url }) => {
